@@ -1,6 +1,6 @@
 '''
-Topic:Bishu and his Girlfriend
-Source:HACKEREARTH
+Topic:THE LAST SHOT
+Source:SPOJ
 Time Comlexity:O()
 Space Comlexity:O()
 '''

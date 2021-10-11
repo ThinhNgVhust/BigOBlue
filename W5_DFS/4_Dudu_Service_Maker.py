@@ -1,6 +1,6 @@
 '''
-Topic:Bishu and his Girlfriend
-Source:HACKEREARTH
+Topic:Dudu Service Maker
+Source:URIONLINEJUDGE
 Time Comlexity:O()
 Space Comlexity:O()
 '''

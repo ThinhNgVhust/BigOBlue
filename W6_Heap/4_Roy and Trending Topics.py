@@ -23,8 +23,8 @@ def solver():
     arr = []
     for i in range(N):
         id, z_score, post, like, comment, share = map(int, input().split())
-        topics = Topic(id, z_score, post,  like,comment, share)
-        arr.append(topics)
+        topic = Topic(id, z_score, post,  like,comment, share)
+        heapq.heappush(arr,topic)
     heapq.heapify(arr)
     if len(arr) < 5:
         while arr:

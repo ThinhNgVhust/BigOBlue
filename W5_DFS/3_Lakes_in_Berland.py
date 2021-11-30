@@ -1,9 +1,9 @@
-'''
+"""
 Topic:Lakes in Berland
 Source:Codeforces
 Time Comlexity:O(NxM)
 Space Comlexity:O(NxM)
-'''
+"""
 
 sRows = [-1, 1, 0, 0]
 sCols = [0, 0, -1, 1]

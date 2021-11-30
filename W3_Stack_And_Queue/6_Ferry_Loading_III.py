@@ -1,9 +1,11 @@
 from collections import deque
 
+
 class Car:
-    def __init__(self,idx,arrive):
+    def __init__(self, idx, arrive):
         self.id = idx
         self.arriveTime = arrive
+
 
 def solver():
     C = int(input())
@@ -58,5 +60,7 @@ def solver():
             print(str(answer[i]))
         if C:
             print("")
+
+
 if __name__ == '__main__':
     solver()

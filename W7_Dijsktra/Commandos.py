@@ -13,7 +13,7 @@ def bfs(Adj, start, end):
         next = []
         for v in frontier:
             for u in Adj[v]:
-                if visited[u] == False:
+                if not visited[u]:
                     dis[u] = dis[v] + 1
                     visited[u] = True
                     next.append(u)
@@ -26,12 +26,13 @@ def bfs(Adj, start, end):
         next = []
         for v in frontier:
             for u in Adj[v]:
-                if visited[u] == False:
+                if not visited[u]:
                     dis1[u] = dis1[v] + 1
                     visited[u] = True
                     next.append(u)
-        frontier=next
-    return max([x+y for x,y in zip(dis,dis1)])
+        frontier = next
+    return max([x + y for x, y in zip(dis, dis1)])
+
 
 def solver(case):
     N = int(input())

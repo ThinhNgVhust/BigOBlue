@@ -4,6 +4,7 @@ Time complexity:O(T∗len(S))
 Space complexity:
 '''
 
+
 def is_normal(char):
     return char == "(" or char == "+" or char == "-" or char == "*" or char == "/" or char == "^"
 

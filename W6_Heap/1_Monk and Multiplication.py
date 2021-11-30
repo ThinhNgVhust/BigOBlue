@@ -28,7 +28,7 @@ for i in arr:
 
     heapq.heappush(heap, -i)
 
-    if (len(heap) < 3):
+    if len(heap) < 3:
         print(-1)
 
         continue

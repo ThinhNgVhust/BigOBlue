@@ -7,9 +7,10 @@ Space complexity:
 sRow = [0, 0, -1, 1]
 sCol = [-1, 1, 0, 0]
 NEXT = len(sRow)
-MAX  =21
+MAX = 21
 
-def bfs(i, j, matrix, visited,H,W):
+
+def bfs(i, j, matrix, visited, H, W):
     n_cells_can_reach = 0
     frontier = [(i, j)]
     # visited[i][j] = 1
@@ -17,8 +18,8 @@ def bfs(i, j, matrix, visited,H,W):
         next = []
         for e in frontier:
             if visited[e[0]][e[1]] == 0:
-                visited[e[0]][e[1]] =1
-                n_cells_can_reach+=1
+                visited[e[0]][e[1]] = 1
+                n_cells_can_reach += 1
                 for h in range(NEXT):
                     r = e[0] + sRow[h]
                     c = e[1] + sCol[h]
@@ -37,11 +38,11 @@ def solver():
         for _ in range(H):
             matrix.append(input())
         visited = [[0 for _ in range(MAX)] for _ in range(MAX)]
-        n_cells_can_reach =0
+        n_cells_can_reach = 0
         for i in range(H):
             for j in range(W):
                 if matrix[i][j] == "@":
-                    n_cells_can_reach = bfs(i, j, matrix, visited,H,W)
+                    n_cells_can_reach = bfs(i, j, matrix, visited, H, W)
                     # print(n_cells_can_reach)
                     result.append(n_cells_can_reach)
                     break

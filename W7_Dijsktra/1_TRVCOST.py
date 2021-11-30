@@ -50,10 +50,10 @@ def dijkstra(Adj, source, visited, dis, parent):
     while stack:
         vertex = heapq.heappop(stack)
         v = vertex.label
-        if visited[v] == True:
+        if visited[v]:
             continue
         for u in Adj[v].keys():
-            if visited[u] == False:
+            if not visited[u]:
                 if dis[u] > dis[v] + Adj[v][u]:
                     dis[u] = dis[v] + Adj[v][u]
                     parent[u] = v

@@ -3,6 +3,8 @@ Link:
 Time complexity:
 Space complexity:
 '''
+
+
 def solver():
     N, M = map(int, input().split())
 

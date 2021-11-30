@@ -26,10 +26,10 @@ def solver():
         Adj[v].append((w, u))
     A, B = get_ints()
 
-    dijkstra(Adj, A, B, x,arr_k)
+    dijkstra(Adj, A, B, x, arr_k)
 
 
-def dijkstra(Adj,  desA, desB, time,arr_k):
+def dijkstra(Adj, desA, desB, time, arr_k):
     dis = [INF] * (len(Adj) + 1)
     dis[desA] = 0
     stack = [(dis[desA], desA)]
@@ -53,13 +53,15 @@ def dijkstra(Adj,  desA, desB, time,arr_k):
                 heapq.heappush(stack, (dis1[u], u))
     min_distance = INF
     for e in arr_k:
-        if dis1[e] <=time and dis[e] != INF:
-            min_distance = min(dis[e]+dis1[e],min_distance)
+        if dis1[e] <= time and dis[e] != INF:
+            min_distance = min(dis[e] + dis1[e], min_distance)
     print(min_distance if min_distance != INF else -1)
+
+
 if __name__ == '__main__':
     import time
+
     start = time.time()
     solver()
     end = time.time()
-    print(end-start)
-
+    print(end - start)

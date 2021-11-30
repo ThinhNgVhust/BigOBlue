@@ -1,9 +1,9 @@
-'''
+"""
 Topic:ABC Path
 Source:SPOJ
 Time Comlexity:O()
 Space Comlexity:O()
-'''
+"""
 
 
 xCol = [-1, 0, 1, -1, 1, -1, 0, 1]

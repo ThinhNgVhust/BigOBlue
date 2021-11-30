@@ -13,14 +13,15 @@ def get_ints(): return map(int, sys.stdin.readline().split())
 
 def input(): return sys.stdin.readline()
 
-def BellmanFord(Adj,dis,s,V):
+
+def BellmanFord(Adj, dis, s, V):
     dis[s] = 0
-    for _ in range(V-1):
+    for _ in range(V - 1):
         flag = False
         for edge in Adj:
-            source,des,weight = edge[0],edge[1],edge[2]
-            if dis[source]!=INF and dis[source] +weight < dis[des]:
-                dis[des] = dis[source]  +weight
+            source, des, weight = edge[0], edge[1], edge[2]
+            if dis[source] != INF and dis[source] + weight < dis[des]:
+                dis[des] = dis[source] + weight
                 flag = True
         if flag is False:
             break
@@ -29,6 +30,7 @@ def BellmanFord(Adj,dis,s,V):
             source, des, weight = edge[0], edge[1], edge[2]
             if dis[source] != INF and dis[des] > dis[source] + weight:
                 dis[des] = -INF
+
 
 def solver():
     while True:
@@ -39,14 +41,17 @@ def solver():
         V = n
         for _ in range(m):
             u, v, w = get_ints()
-            Adj.append((u,v,w))
-        dis = [INF]*V
-        BellmanFord(Adj,dis,s,V)
+            Adj.append((u, v, w))
+        dis = [INF] * V
+        BellmanFord(Adj, dis, s, V)
         for _ in range(q):
-            v =int(input())
-            if dis[v] == INF:print("Impossible")
-            elif dis[v] == -INF:print("-Infinity")
-            else:print(dis[v])
+            v = int(input())
+            if dis[v] == INF:
+                print("Impossible")
+            elif dis[v] == -INF:
+                print("-Infinity")
+            else:
+                print(dis[v])
         print()
 
 

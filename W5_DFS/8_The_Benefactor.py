@@ -1,9 +1,9 @@
-'''
+"""
 Topic:The Benefactor
 Source:SPOJ
-Time Comlexity:O()
-Space Comlexity:O()
-'''
+Time Complexity:O()
+Space Complexity:O()
+"""
 
 MAX = 50005
 

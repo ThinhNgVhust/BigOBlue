@@ -3,6 +3,8 @@ Link:
 Time complexity:
 Space complexity:
 '''
+
+
 def solver():
     C = int(input())
     result = []
@@ -42,6 +44,7 @@ def solver():
     for e in result:
         s = " ".join([str(x) for x in e])
         print(s)
+
 
 if __name__ == '__main__':
     solver()

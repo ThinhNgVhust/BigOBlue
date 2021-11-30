@@ -5,7 +5,9 @@ Space complexity:
 '''
 from collections import deque, defaultdict
 
-MODULE =int(1e5)
+MODULE = int(1e5)
+
+
 def BFS(k, l, a):
     q = deque()
     visited = defaultdict()

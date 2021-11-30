@@ -28,7 +28,7 @@ def dijkstra(Adj, dis, start, end):
     # parent={}
     while stack:
         (w, u) = heapq.heappop(stack)
-        w = -w;
+        w = -w
         if dis[u] != w: continue
         # if u == end: return
         for v in Adj[u]:

@@ -3,6 +3,8 @@ Link:
 Time complexity:
 Space complexity:
 '''
+
+
 def solver():
     T = int(input())
 
@@ -15,12 +17,12 @@ def solver():
         matrix = []
         for i in range(M):
             matrix.append(input())
-        n_openning = []
+        n_opening = []
         for i in range(M):
             for j in range(N):
                 if matrix[i][j] == ".":
                     if i == 0 or j == 0 or i == M - 1 or j == N - 1:
-                        n_openning.append((i, j))
+                        n_opening.append((i, j))
                     if (i, j) not in Adj:
                         Adj[(i, j)] = []
                     xRows = [-1, 1, 0, 0]
@@ -28,13 +30,13 @@ def solver():
                     for t in range(4):
                         i_1 = i + xRows[t]
                         j_1 = j + xCols[t]
-                        if i_1 >= 0 and j_1 >= 0 and i_1 < M and j_1 < N and matrix[i_1][j_1] == ".":
+                        if 0 <= i_1 < M and 0 <= j_1 < N and matrix[i_1][j_1] == ".":
                             Adj[(i, j)].append((i_1, j_1))
-        if len(n_openning) != 2:
+        if len(n_opening) != 2:
             result.append("invalid")
             continue
         found = False
-        key = n_openning.pop()
+        key = n_opening.pop()
         frontier = [key]
         parent = {key: None}
         while frontier:
@@ -44,7 +46,7 @@ def solver():
                     if v1 not in parent:
                         parent[v1] = v
                         next.append(v1)
-                        if v1 in n_openning:
+                        if v1 in n_opening:
                             found = True
                             break
             frontier = next
@@ -54,5 +56,7 @@ def solver():
             result.append("invalid")
     for e in result:
         print(e)
+
+
 if __name__ == '__main__':
     solver()

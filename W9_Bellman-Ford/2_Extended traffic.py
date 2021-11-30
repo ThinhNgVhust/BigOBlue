@@ -4,7 +4,7 @@ import sys
 INF = int(1e9)
 
 
-#sys.stdin = open('test1.txt', 'r')
+# sys.stdin = open('test1.txt', 'r')
 def get_array(): return list(map(int, sys.stdin.readline().split()))
 
 
@@ -14,7 +14,7 @@ def get_ints(): return map(int, sys.stdin.readline().split())
 def input(): return sys.stdin.readline()
 
 
-def BellmanFord(Adj, dis, source,n):
+def BellmanFord(Adj, dis, source, n):
     dis[source] = 0
     V = n
     for _ in range(1, V):
@@ -24,13 +24,12 @@ def BellmanFord(Adj, dis, source,n):
             if dis[source] != INF and dis[des] > dis[source] + weight:
                 dis[des] = dis[source] + weight
                 flag = True
-        if flag == False: break
+        if not flag: break
     for i in range(V):
         for edge in Adj:
             source, des, weight = edge[0], edge[1], edge[2]
             if dis[source] != INF and dis[des] > dis[source] + weight:
                 dis[des] = -INF
-
 
 
 def solver(case):
@@ -40,11 +39,11 @@ def solver(case):
     m = int(input())
     for i in range(m):
         u, v = get_ints()
-        w = (cost[v-1] - cost[u-1]) ** 3
+        w = (cost[v - 1] - cost[u - 1]) ** 3
         Adj.append((u, v, w))
     dis = [INF] * (n + 1)
 
-    BellmanFord(Adj, dis, 1,n)
+    BellmanFord(Adj, dis, 1, n)
     q = int(input())
     request = []
     print("Case {0}:".format(case))

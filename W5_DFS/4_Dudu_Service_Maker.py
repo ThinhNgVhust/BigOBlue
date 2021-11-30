@@ -1,9 +1,9 @@
-'''
+"""
 Topic:Dudu Service Maker
 Source:URIONLINEJUDGE
 Time Comlexity:O()
 Space Comlexity:O()
-'''
+"""
 
 import sys
 

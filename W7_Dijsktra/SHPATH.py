@@ -36,6 +36,8 @@ def solver():
 import heapq
 
 path = {}
+
+
 def dijsktra(vertex1, vertex2, Adj):
     # if vertex1 in path:
     #     if vertex2 in path[vertex1]:
@@ -44,19 +46,19 @@ def dijsktra(vertex1, vertex2, Adj):
     dis = [INF] * MAX
     dis[vertex1] = 0
     visited = [False] * MAX
-    stack = [(dis[0],vertex1)]
+    stack = [(dis[0], vertex1)]
     while stack:
         vertex = heapq.heappop(stack)
         v = vertex[1]
-        if visited[v] == True:
+        if visited[v]:
             continue
         if v == vertex2:
             break
         for u in Adj[v].keys():
-            if visited[u] == False:
+            if not visited[u]:
                 if dis[u] > dis[v] + Adj[v][u]:
                     dis[u] = dis[v] + Adj[v][u]
-                    heapq.heappush(stack, (dis[u],u ))
+                    heapq.heappush(stack, (dis[u], u))
 
         visited[v] = True
     print(dis[vertex2])

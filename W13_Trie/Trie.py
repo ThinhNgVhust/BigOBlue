@@ -47,18 +47,18 @@ def removeWord(root, s, level, len):
     return flag
 
 
-def printWord(root, s):
+def printWord(root, s=""):
     if isWord(root):
         print(s)
     for ch in root.children:
-        printWord(root.children[ch], s+ ch)
+        printWord(root.children[ch], s + ch)
 
 
 root = Node()
-addWord(root,"the")
-addWord(root,"then")
-addWord(root,"bigo")
-print(findWord(root,"bigo"))
-print(findWord(root,"thinh"))
-removeWord(root,"bigo",0,4)
-print(findWord(root,"bigo"))
+addWord(root, "the")
+addWord(root, "then")
+addWord(root, "bigo")
+addWord(root, "thinh")
+addWord(root, "thin")
+addWord(root, "th")
+printWord(root)

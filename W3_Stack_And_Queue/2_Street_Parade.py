@@ -23,5 +23,7 @@ def solver():
             print("yes")
         else:
             print("no")
+
+
 if __name__ == '__main__':
     solver()

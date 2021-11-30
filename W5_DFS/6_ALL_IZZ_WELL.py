@@ -1,9 +1,9 @@
-'''
+"""
 Topic:ALL IZZ WELL
 Source:SPOJ
 Time Comlexity:O()
 Space Comlexity:O()
-'''
+"""
 
 xCol = [-1, 0, 1, -1, 1, -1, 0, 1]
 xRow = [-1, -1, -1, 0, 0, 1, 1, 1]
@@ -32,7 +32,7 @@ def build_graph(g, R):
 
 def solver():
     t = int(input())
-    for i in range(t) :
+    for i in range(t):
         t -= 1
         R, C = map(int, input().split())
         graph = []
@@ -41,7 +41,7 @@ def solver():
         visited = [[0] * (C + 1) for _ in range(R + 1)]
         for i in range(R):
             for j in range(C):
-                if graph[i][j] == "A" and visited[i][j]==0:
+                if graph[i][j] == "A" and visited[i][j] == 0:
                     visited[i][j] = 1
                     dfs(i, j, visited, graph, R, C, 0, result)
                     if len(result) > 0:

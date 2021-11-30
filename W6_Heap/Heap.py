@@ -71,19 +71,3 @@ if __name__ == '__main__':
     print(heap.arr)
     for i in range(len(heap)):
         print(heap.extract(),heap.arr)
-# class PQEntry():
-#     def __init__(self, value):
-#         self.value = value
-#
-#     def __lt__(self, other):
-#         return self.value > other.value
-#
-#     def __str__(self):
-#         return str(self.value)
-#
-# arr = [-1, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-# import heapq
-# print(arr)
-# arr1 = [PQEntry(x) for x in arr]
-# heapq.heapify(arr1)
-# print([x.value for x in arr1])

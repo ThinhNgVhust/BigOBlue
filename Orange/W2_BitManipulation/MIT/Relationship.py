@@ -35,6 +35,7 @@ result = (x ^ (1 << k))
 print("result: ", bin(result))
 
 # Extract a bit field from a word x
+print("Extract a bit field from a word x")
 mask = (1 << 6) + (1 << 7) + (1 << 8) + (1 << 9) + (1 << 10)
 print("input:  ", bin(x))
 shift = 7
@@ -91,4 +92,31 @@ print("y = ", y)
 print("n = ", n)
 z = x + y
 r = z - (n & -(z >= n))
-print("(x+y)mod n =",r)
+print("(x+y)mod n =", r)
+
+print()
+print("Round up to a Power of 2")
+print("Given number  N(unsigned 64 bit), computer 2^int(log(n)+1)")
+n = 0b0010000001010000
+print("So N: ",n)
+print("n      :", bin(n))
+print("n-1    :", bin(n - 1))
+n -= 1
+for i in range(6):
+    i =2**i
+    n |= n >> i
+    print("n |= n >> {0}: {1}".format(i,bin(n)))
+n+=1
+print(bin(n))
+# print(n)
+
+
+
+print("Count the number of ! bits in a word ")
+x = 0b11000010010110111111010001111000
+print("Input: ",bin(x))
+count = 0
+while x!=0:
+    count+=1
+    x&=x-1
+print("Output: ",count)

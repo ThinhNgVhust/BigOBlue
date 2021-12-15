@@ -9,7 +9,7 @@ def solve():
     result = []
     for i in range(k):  # O(2^K)
         arr = [True if e & i != 0 else False for e in friends]  # O(N)
-        if all(arr):
+        if all(arr): # O(N)
             result.append(i)
     ans = 100
     for e in result:  # O(K)

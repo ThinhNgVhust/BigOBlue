@@ -1,5 +1,5 @@
 import sys
-
+sys.setrecursionlimit(40000)
 
 def get_array(): return list(map(int, sys.stdin.readline().split()))
 
@@ -59,40 +59,101 @@ def solve_B_to_D(ans, arr):
         solve_B_to_D(ans, bottom_right_sub_arr)
 
 
-def solve_D_to_B(ans, arr):
-    pass
+def solve_D_to_B(arr, str, top, bottom, left, right):
+    global global_count
+    if str[global_count] != "D":
+        for i in range(top, bottom):
+            for j in range(left, right):
+                arr[i][j] = str[global_count]
+        global_count += 1
+        return
+    else:
+        global_count += 1
+        mid_row = (bottom + top + 1) // 2
+        mid_col = (left + right + 1) // 2
+        diff_hor = right - left
+        diff_ver = bottom - top
+        if bottom - top == 1 and right - left == 1:
+            print("can never go here")
+            return
+        if diff_hor >= 2 and diff_ver == 1:
+            solve_D_to_B(arr, str, top, bottom, left, mid_col)
+            solve_D_to_B(arr, str, top, bottom, mid_col, right)
+            return
+        if diff_ver >= 2 and diff_hor == 1:
+            solve_D_to_B(arr, str, top, mid_row, left, right)
+            solve_D_to_B(arr, str, mid_row, bottom, left, right)
+            return
+        if diff_ver >= 2 and diff_hor >= 2:
+            solve_D_to_B(arr, str, top, mid_row, left, mid_col)
+            solve_D_to_B(arr, str, top, mid_row, mid_col, right)
+            solve_D_to_B(arr, str, mid_row, bottom, left, mid_col)
+            solve_D_to_B(arr, str, mid_row, bottom, mid_col, right)
+            return
+    #
+
+
+global_count = 0
 
 
 def solver():
+    global global_count
     sys.stdin = open('test.txt', 'r')
-    # input_str = read_all()
-    # print(input_str)
+    input_str = read_all().split("\n")
+    is_first = True
+    idx = 0
     type = {"B": 0, "D": 1}
+    back = {0: "B", 1: "D"}
     while True:
-        s = input()
+        s = input_str[idx]
+        idx += 1
         if s[0] == "#":
             return
-        s = s.split()
         str = ""
-        type1 = type[s[0]]
-        h = int(s[1])
-        w = int(s[2])
-        while len(str) != int(w * h):
-            s = input()
-            s = s[:-1]
-            str += s
-        arr = [[None for i in range(w)] for j in range(h)]
-        k = 0
-        for i in range(h):
-            for j in range(w):
-                arr[i][j] = str[k]
-                k += 1
-        ans = []
-        if type1 == 0:  # B to D
-            solve_B_to_D(ans, arr)
+        bm_type = s.split()
+        type1 = type[bm_type[0]]
+        h = int(bm_type[1])
+        w = int(bm_type[2])
+        if is_first:
+            print('{}{:>4}{:>4}'.format(back[1 - type1], h, w))
+            is_first = False
         else:
-            solve_D_to_B(ans, str)
-        print("".join(ans))
+            print('\n{}{:>4}{:>4}'.format(back[1 - type1], h, w))
+        arr = [[None for i in range(w)] for j in range(h)]
+        if type1==0:#B
+            while len(str) != int(w * h):
+                s = input_str[idx]
+                str += s
+                idx+=1
+            ans = []
+            k = 0
+            for i in range(h):
+                for j in range(w):
+                    arr[i][j] = str[k]
+                    k += 1
+
+
+            solve_B_to_D(ans, arr)
+            global_count = 0
+            for i in range(1, len(ans) + 1):
+                print(ans[i - 1], end="")
+                if i % 50 == 0 and i!=len(ans):
+                    print()
+        else:
+            while " " not in input_str[idx][0:2] and input_str[idx][0]!="#":
+                str+=input_str[idx]
+                idx+=1
+            solve_D_to_B(arr, str, 0, h, 0, w)
+            global_count = 0
+
+            count = 0
+            for i in range(h):
+                for j in range(w):
+                    count += 1
+                    print(arr[i][j], end="")
+                    if count % 50 == 0 and count!=int(h*w):
+                        print()
+
 
 
 solver()

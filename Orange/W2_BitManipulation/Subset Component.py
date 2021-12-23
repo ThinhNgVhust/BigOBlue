@@ -1,26 +1,44 @@
-# Hackker ranks
-# !/bin/python3
-
-import math
-import os
-import random
-import re
-import sys
+def find(u, parent):
+    if u != parent[u]:
+        parent[u] = find(parent[u], parent)
+    return parent[u]
 
 
-#
-# Complete the 'findConnectedComponents' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts LONG_INTEGER_ARRAY d as parameter.
-#
+def union(u, v, parent, ranks):
+    up = find(u, parent)
+    vp = find(v, parent)
+    if up != vp:
+        if up > vp:
+            parent[vp] = up
+        elif up < vp:
+            parent[up] = vp
+        else:
+            parent[up] = vp
+            ranks[vp] += 1
 
-def count_components(val):
-    s = 0
-    for i in range(64):
-        if val & 1 << i != 0:
-            s += 1
-    return s
+
+def count_components(i, prev_components, cliques):
+    n = 1 << len(cliques)# so cac subset
+    ans = 0
+    for i in range(n):#duyet tung subset
+        idx = []
+        for j in range(0,64):
+            if 1 << j & i != 0: idx.append(j)
+        sub_Set =[cliques[i] for i in idx]#lay nhung subset
+        parent = [i for i in range(64)]
+        ranks = [0 for i in range(64)]
+        Adj = {}
+        for e in sub_Set:
+            cnt =[]
+            for k in range(64):
+                if 1<<k &e!=0:cnt.append(k)
+            if len(cnt)>1:
+                for i in range(len(cnt)):
+                    union(cnt[0],cnt[i],parent,ranks)
+        for i in range(64):
+                Adj[find(i,parent)]=1
+        ans+=len(Adj)
+    return ans
 
 
 if __name__ == '__main__':
@@ -29,17 +47,5 @@ if __name__ == '__main__':
     d = [int(v) for v in d]
     assert len(d) == n
 
-    result = 0
-    for k in range(64):
-        mask = 1 << k
-        temp = []
-        for i in range(n):
-            if d[i] & mask != 0:
-                temp.append(d[i])
-
-        for i in range(len(temp)):
-            val = 0
-            for j in range(i, len(temp)):
-                val = d[i] | d[j]
-                result += 64 - count_components(val) + 1
-    print(result)
+    singletons = [1 << j for j in range(64)]
+    print(count_components(0, singletons, d))

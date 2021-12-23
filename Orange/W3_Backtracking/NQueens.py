@@ -1,10 +1,10 @@
 def check(board, row, col):
-    #hang truoc no
+    # hang truoc no
     for i in range(row):
         if board[i][col] == 1: return False
     i = row
     j = col
-    #duong cheo chinh
+    # duong cheo chinh
     while i >= 0 and j >= 0:
         if board[i][j] == 1: return False
         i -= 1
@@ -19,15 +19,19 @@ def check(board, row, col):
     return True
 
 
+def printSol(board):
+    print()
+    for i in range(len(board)):
+        print(board[i])
+    print()
+
+
 def nQueen(board, row):
     global sol
     if sol: return
     if row == len(board):
         sol = True
-        print()
-        for i in range(len(board)):
-            print(board[i])
-        print()
+        printSol(board)
         return
     for col in range(len(board)):
         if check(board, row, col):

@@ -1,4 +1,4 @@
-arr = ["A", "B", "C", "D"]
+arr = ["A", "A", "C", "D"]
 permutation = []
 n = len(arr)
 choosen = [False] * n
